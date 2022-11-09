@@ -3,10 +3,10 @@ let url = 'http://localhost:3000/api/products'
 
 fetch(url)
   .then((response) => response.json())
-  .then((datas) => {
-    console.log(datas);
+  .then((products) => {
+    console.log(products);
     let items = document.getElementById('items');
-    for(let data of datas) {
+    for(let data of products) {
       items.innerHTML += `<a href="./product.html?id=${data._id}">
       <article>
         <img src=${data.imageUrl} alt="${data.altTxt}">
@@ -15,5 +15,5 @@ fetch(url)
       </article>
     </a>`}
   })
-  .catch((err) => console.log('serveur indisponible:' + err))
+  .catch((err) => console.log('server unavailable:' + err))
 
