@@ -1,9 +1,4 @@
-
-
-    
-
-
-(async function () {
+ (async function () {
     const productId = getProductId()
     const product = await getProduct(productId)
     console.log(product)
@@ -24,6 +19,11 @@ function getProduct(productId) {
 } 
 
 function displayProduct(product) {
+    let displayImage = ''
+    displayImage = `<img src=${product.imageUrl} alt="${product.description}">`
+    document.querySelector('.item__img').insertAdjacentHTML("beforeend", displayImage)
+
     document.getElementById('title').textContent = product.name
     document.getElementById('price').textContent = product.price
+    document.getElementById('description').textContent = product.description
 }
