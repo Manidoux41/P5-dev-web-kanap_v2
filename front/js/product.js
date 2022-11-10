@@ -1,20 +1,20 @@
  (async function () {
-    //ciblage
+    //Ciblage
     const productId = getProductId()
-    
-    //récupération
+
+    //Récupération
     const product = await getProduct(productId)
     
     //Affichage
     displayProduct(product)
 })()
 
-//ciblage
+//Ciblage
 function getProductId () {
     return new URL(location.href).searchParams.get('id')
 }
 
-//récupération
+//Récupération
 function getProduct(productId) {
      return fetch(`http://localhost:3000/api/products/${productId}`)
         .then((response) => response.json())
@@ -36,10 +36,10 @@ function displayProduct(product) {
     document.getElementById('price').textContent = product.price
     document.getElementById('description').textContent = product.description
 
-    //Affichage des checkbox
-
-    // let displayOption = ''
-    // for(color in products) {
-
-    // }
+    
+    let optionColors = ''
+    optionColors = `<option value="${product.colors[0]}">${product.colors[0]}</option>`    
+    document.querySelector('option').insertAdjacentHTML("afterend", optionColors )
+      
+    
 }
