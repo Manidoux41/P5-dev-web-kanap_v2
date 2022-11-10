@@ -1,4 +1,4 @@
- (async function () {
+ const loaderProduct = async () => {
     //Ciblage
     const productId = getProductId()
 
@@ -7,7 +7,9 @@
     
     //Affichage
     displayProduct(product)
-})()
+}
+
+loaderProduct()
 
 //Ciblage
 function getProductId () {
