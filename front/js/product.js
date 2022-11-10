@@ -31,15 +31,14 @@ function displayProduct(product) {
   //Affichage de l'image
   let displayImage = "";
   displayImage = `<img src=${product.imageUrl} alt="${product.altTxt}">`;
-  document
-    .querySelector(".item__img")
-    .insertAdjacentHTML("beforeend", displayImage);
+  document.querySelector(".item__img").insertAdjacentHTML("beforeend", displayImage);
 
   //Affichage du contenu
   document.getElementById("title").textContent = product.name;
   document.getElementById("price").textContent = product.price;
   document.getElementById("description").textContent = product.description;
 
+  //Affichage du choix des couleurs
   let optionColors = "";
   for (let i = 0; i < product.colors.length; i++) {
     optionColors += `<option value="${product.colors[i]}">${product.colors[i]}</option>`;
