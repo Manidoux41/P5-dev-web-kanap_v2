@@ -35,17 +35,11 @@ function displayProduct(product) {
     document.getElementById('title').textContent = product.name
     document.getElementById('price').textContent = product.price
     document.getElementById('description').textContent = product.description
-
+  
+    let optionColors= ''
+    for (let i = 0; i < product.colors.length; i++){
+        optionColors += `<option value="${product.colors[i]}">${product.colors[i]}</option>`   
+        }     
+    document.querySelector('option').insertAdjacentHTML("afterend", optionColors )
+}    
     
-   
-    // let match = product.colors.filter((product)=>{
-    //     let optionColors = ''
-    //     for (let i = 0; i < product.colors.length; i++){
-    //         if(product.colors[i] !== null) {
-    //             return  optionColors = `<option value="${product.colors[0]}">${product.colors[0]}</option>`            }
-    //     }
-    // })
-    // document.querySelector('option').insertAdjacentHTML("afterend", match )
-      
-    
-}
