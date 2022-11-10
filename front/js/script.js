@@ -3,9 +3,7 @@ let url = 'http://localhost:3000/api/products'
 fetch(url)
   .then((response) => response.json())
   .then((products) => {
-    console.log(products)
     for(let data of products) {
-        console.log(data)
         let display = ''
         display += `<a href="./product.html?id=${data._id}">
                         <article>
@@ -18,3 +16,4 @@ fetch(url)
     }
 })
   .catch((err) => console.log('server unavailable:' + err))
+
