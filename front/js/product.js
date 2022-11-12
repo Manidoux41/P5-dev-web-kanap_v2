@@ -11,10 +11,12 @@ const loaderProduct = async () => {
 
   //Affichage
   displayProduct(product);
+
+  //enregistrement dans localstorage
+  saveToLocalStorage();
 };
 
 loaderProduct();
-
 
 /**
  * Target products
@@ -23,7 +25,6 @@ loaderProduct();
 function getProductId() {
   return new URL(location.href).searchParams.get("id");
 }
-
 
 /**
  * Get Product Id
@@ -39,7 +40,6 @@ function getProduct(productId) {
     .catch((err) => console.log(err));
 }
 
-
 /**
  * Display
  * @param {Array<string>} product
@@ -49,7 +49,13 @@ function displayProduct(product) {
   //Affichage de l'image
   let displayImage = "";
   displayImage = `<img src=${product.imageUrl} alt="${product.altTxt}">`;
-  document.querySelector(".item__img").insertAdjacentHTML("beforeend", displayImage);
+  document
+    .querySelector(".item__img")
+    .insertAdjacentHTML("beforeend", displayImage);
+    
+    //Test ajout image dans localstorage
+    let saveImgToLS = localStorage.setItem('product',product.imageUrl)
+    console.log(saveImgToLS);
 
   //Affichage du contenu
   document.getElementById("title").textContent = product.name;
@@ -62,4 +68,10 @@ function displayProduct(product) {
     optionColors += `<option value="${product.colors[i]}">${product.colors[i]}</option>`;
   }
   document.querySelector("option").insertAdjacentHTML("afterend", optionColors);
+}
+
+
+//enregistrement de le localstorage
+function saveToLocalStorage() {
+  
 }
