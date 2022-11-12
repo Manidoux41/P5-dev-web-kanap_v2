@@ -1,3 +1,7 @@
+/**
+ * Description
+ * @returns {any}
+ */
 const loaderProduct = async () => {
   //Ciblage
   const productId = getProductId();
@@ -11,12 +15,21 @@ const loaderProduct = async () => {
 
 loaderProduct();
 
-//Ciblage
+
+/**
+ * Target products
+ * @returns {any}
+ */
 function getProductId() {
   return new URL(location.href).searchParams.get("id");
 }
 
-//Récupération
+
+/**
+ * Get Product Id
+ * @param {any} productId
+ * @returns {any}
+ */
 function getProduct(productId) {
   return fetch(`http://localhost:3000/api/products/${productId}`)
     .then((response) => response.json())
@@ -26,7 +39,12 @@ function getProduct(productId) {
     .catch((err) => console.log(err));
 }
 
-//Affichage
+
+/**
+ * Display
+ * @param {Array<string>} product
+ * @returns {any}
+ */
 function displayProduct(product) {
   //Affichage de l'image
   let displayImage = "";
