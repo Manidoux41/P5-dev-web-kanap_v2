@@ -14,7 +14,7 @@ export const dataFetch = async() => {
         name: data.name,
         description: data.description
       }
-      
+
         let display = ''
         display += `<a href="./product.html?id=${product.id}">
                         <article>
@@ -26,6 +26,6 @@ export const dataFetch = async() => {
         document.getElementById('items').insertAdjacentHTML("beforeend", display)
     }
 })
-  .catch((err) => console.log('server unavailable:' + err))
+  .catch((err) => console.log('server unavailable:' + err));
 }
 
