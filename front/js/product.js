@@ -75,3 +75,4 @@ function displayProduct(product) {
 function saveToLocalStorage() {
   
 }
+
