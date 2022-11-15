@@ -108,8 +108,7 @@ export function addToCart() {
         quantity: quantity.value,
       };
       listProducts.push(productSave);
-      localStorage.setItem("productsave", JSON.stringify(listProducts));
+      localStorage.setItem("productSave", JSON.stringify(listProducts));
     }
   });
 }
-
