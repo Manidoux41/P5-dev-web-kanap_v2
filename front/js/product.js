@@ -90,24 +90,36 @@ function addToCart() {
     let title = document.getElementById("title");
     let price = document.getElementById("price");
 
-    if (color.value == null || color.value == "" || quantity.value <= 0) {
+    if (color.value == null || color.value == "" || quantity.value < 1) {
       console.log("Choissisez une couleur et/ou une quantité");
       return 
     }
 
     let productSave = {
-        //id: productId,
-        name: title.textContent,
-        image: image.src,
-        txtAlt: image.alt,
-        description: description.textContent,
-        price: Number(price.textContent),
+        id: productId,
+        // name: title.textContent,
+        // image: image.src,
+        // txtAlt: image.alt,
+        // description: description.textContent,
+        // price: Number(price.textContent),
         color: color.value,
         quantity: Number(quantity.value)
     };
 
-    listProducts.push(productSave);
-    localStorage.setItem(productId, JSON.stringify(listProducts));
-    window.location.href = "cart.html"
+    // si productId est égal à productSave.id && color.value == ProductSave.color {
+      // Alors augmenter la ProductSave.quantity
+    //}
+
+    // if localstorage.getitem == null {
+
+    //}
+    const getLS = localStorage.getItem(productId)
+    if ( getLS !== null) {  
+      console.log(getLS);
+    } else {
+      listProducts.push(productSave)
+      localStorage.setItem(productId, JSON.stringify(listProducts));      
+      window.location.href = "cart.html"
+    }
   });
 }

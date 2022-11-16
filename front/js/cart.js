@@ -1,10 +1,10 @@
 console.log(localStorageLength);
-const items = []
+// const items = []
 
-if(localStorage.length !== null) {
-   const displayLS = JSON.parse(localStorage.getItem(productId))
-    console.log(displayLS);
-  }
+// if(localStorage.length !== null) {
+//    const displayLS = JSON.parse(localStorage.getItem(productId))
+//     console.log(displayLS);
+//   }
 
 
 let cartItems = document.getElementById('cart__items')
