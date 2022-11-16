@@ -1,4 +1,12 @@
-// sélection de cart_items 
+console.log(localStorageLength);
+const items = []
+
+if(localStorage.length !== null) {
+   const displayLS = JSON.parse(localStorage.getItem(productId))
+    console.log(displayLS);
+  }
+
+
 let cartItems = document.getElementById('cart__items')
 
 let article = document.createElement('article')
@@ -48,6 +56,13 @@ cartItemContent.append(itemDesc)
 
 article.appendChild(cartItemContent)
 
+
+
+cartItems.insertAdjacentElement("afterbegin", article);
+
+
+
+
 /* let articleDisplay = ''
 articleDisplay = `<article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
 <div class="cart__item__img">
@@ -70,5 +85,3 @@ articleDisplay = `<article class="cart__item" data-id="{product-ID}" data-color=
   </div>
 </div>
 </article>` */
-
-cartItems.insertAdjacentElement("afterbegin", article);
