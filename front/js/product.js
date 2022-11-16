@@ -114,8 +114,13 @@ function addToCart() {
 
     //}
     const getLS = localStorage.getItem(productId)
-    if ( getLS !== null) {  
+    if ( getLS !== null || getLS == productSave.id) {  
+      JSON.parse(getLS)
       console.log(getLS);
+      
+      listProducts.map(getLS => getLS.quantity += productSave.quantity)         
+      listProducts.push(productSave)
+      localStorage.setItem(productId, JSON.stringify(listProducts)); 
     } else {
       listProducts.push(productSave)
       localStorage.setItem(productId, JSON.stringify(listProducts));      
