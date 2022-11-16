@@ -11,15 +11,13 @@ export const loaderProduct = async () => {
 
   //Affichage
   displayProduct(product);
-
-  //enregistrement dans localstorage
-  addToCart();
 };
 
 /**
  * Initialisation du LoaderProduct
  */
 loaderProduct();
+addToCart();
 
 /**
  * Target products
@@ -95,7 +93,7 @@ export function addToCart() {
     if (color.value == null || color.value == "" || quantity.value <= 0) {
       console.log("Entrez des valeurs");
     } else {
-      
+            
       let productSave = {
         id: productId,
 
@@ -103,12 +101,17 @@ export function addToCart() {
         image: image.src,
         txtAlt: image.alt,
         description: description.textContent,
-
+        price: Number(price.textContent),
         color: color.value,
-        quantity: quantity.value,
+        quantity: Number(quantity.value)
       };
       listProducts.push(productSave);
-      localStorage.setItem("productSave", JSON.stringify(listProducts));
+      localStorage.setItem(productId, JSON.stringify(listProducts));
+      if(color.value == color.value){
+        quantity += quantity
+        listProducts.map(productSave)
+        localStorage.setItem(productId, JSON.stringify(listProducts));
+      }
     }
   });
 }
