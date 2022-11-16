@@ -94,8 +94,9 @@ function addToCart() {
       console.log("Choissisez une couleur et/ou une quantité");
       return 
     }
-      let productSave = {
-        id: productId,
+
+    let productSave = {
+        //id: productId,
         name: title.textContent,
         image: image.src,
         txtAlt: image.alt,
@@ -103,9 +104,10 @@ function addToCart() {
         price: Number(price.textContent),
         color: color.value,
         quantity: Number(quantity.value)
-      };
-      listProducts.push(productSave);
-      localStorage.setItem(productId, JSON.stringify(listProducts));
-      window.location.href = "cart.html"
+    };
+
+    listProducts.push(productSave);
+    localStorage.setItem(productId, JSON.stringify(listProducts));
+    window.location.href = "cart.html"
   });
 }
