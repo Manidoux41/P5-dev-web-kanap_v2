@@ -118,7 +118,7 @@ function addToCart() {
       JSON.parse(getLS)
       console.log(getLS);
       
-      listProducts.map(getLS => getLS.quantity += productSave.quantity)         
+      listProducts.map(getLS => quantity.value += productSave.quantity)         
       listProducts.push(productSave)
       localStorage.setItem(productId, JSON.stringify(listProducts)); 
     } else {
