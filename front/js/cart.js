@@ -1,22 +1,54 @@
 // sélection de cart_items 
 let cartItems = document.getElementById('cart__items')
 
-// let article = document.createElement('article')
-// article.classList.add('cart__item')
-// article.setAttribute('data-id', "product-Id")
-// article.setAttribute('data-color', "product-color")
+let article = document.createElement('article')
+article.classList.add('cart__item')
+article.setAttribute('data-id', "product-Id")
+article.setAttribute('data-color', "product-color")
 
 // cartItems.appendChild(article)
 
-// const cartImgDiv = document.createElement('div')
-// cartImgDiv.classList.add('cart__item__img')
-// const imgInDiv = document.createElement('img')
-// imgInDiv.src("../images/product01.jpg")
-// imgInDiv.alt("Photographie")
-// cartImgDiv.append(imgInDiv)
-// article.appendChild(cartImgDiv)
+//cart__item__img
+const cartImgDiv = document.createElement('div')
+cartImgDiv.classList.add('cart__item__img')
+const imgInDiv = document.createElement('img')
+imgInDiv.src="../images/product01.jpg"
+imgInDiv.alt="Photographie"
+cartImgDiv.append(imgInDiv)
+article.appendChild(cartImgDiv)
 
-let articleDisplay = ''
+//cart__item__content
+const cartItemContent = document.createElement('div')
+cartItemContent.classList.add('cart__item__content')
+
+//Description
+const itemDesc = document.createElement('div')
+itemDesc.classList.add('cart__item__content__description')
+
+//Title
+const itemDescTitle = document.createElement('h2')
+itemDescTitle.innerText = "Nom du produit"
+
+//Color
+const itemColor = document.createElement('p')
+itemColor.innerText = "Vert"
+
+//Prix
+const itemPrice = document.createElement('p')
+itemPrice.innerText = "42,00 €"
+
+//Insertion ds la div Desc
+itemDesc.append(itemDescTitle)
+itemDesc.append(itemColor)
+itemDesc.append(itemPrice)
+
+cartItemContent.append(itemDesc)
+
+
+
+article.appendChild(cartItemContent)
+
+/* let articleDisplay = ''
 articleDisplay = `<article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
 <div class="cart__item__img">
   <img src="../images/product01.jpg" alt="Photographie d'un canapé">
@@ -37,6 +69,6 @@ articleDisplay = `<article class="cart__item" data-id="{product-ID}" data-color=
     </div>
   </div>
 </div>
-</article>`
+</article>` */
 
-cartItems.insertAdjacentHTML("afterbegin", articleDisplay);
+cartItems.insertAdjacentElement("afterbegin", article);
