@@ -82,39 +82,20 @@ function addToCart() {
   button.addEventListener("click", (e) => {
     let color = document.getElementById("colors");
     let quantity = document.getElementById("quantity");
-
     const productId = getProductId();
-
-    let image = document.getElementsByTagName("img")[5];
-    let description = document.getElementById("description");
-    let title = document.getElementById("title");
-    let price = document.getElementById("price");
-
-    if (color.value == null || color.value == "" || quantity.value < 1) {
-      console.log("Choissisez une couleur et/ou une quantité");
-      return 
-    }
 
     let productSave = {
         id: productId,
-        // name: title.textContent,
-        // image: image.src,
-        // txtAlt: image.alt,
-        // description: description.textContent,
-        // price: Number(price.textContent),
         color: color.value,
         quantity: Number(quantity.value)
     };
 
-    // si productId est égal à productSave.id && color.value == ProductSave.color {
-      // Alors augmenter la ProductSave.quantity
-    //}
-
-    // if localstorage.getitem == null {
-
-    //}
     const getLS = localStorage.getItem(productId)
-    if ( getLS !== null || getLS == productSave.id) {  
+
+    if (color.value == null || color.value == "" || quantity.value < 1) {
+      console.log("Choissisez une couleur et/ou une quantité");
+      return 
+    } else if(getLS !== null || getLS == productSave.id) {
       JSON.parse(getLS)
       console.log(getLS);
       
@@ -124,7 +105,17 @@ function addToCart() {
     } else {
       listProducts.push(productSave)
       localStorage.setItem(productId, JSON.stringify(listProducts));      
-      window.location.href = "cart.html"
+      //window.location.href = "cart.html"
     }
+
+
+    // si productId est égal à productSave.id && color.value == ProductSave.color {
+      // Alors augmenter la ProductSave.quantity
+    //}
+
+    // if localstorage.getitem == null {
+
+    //}
+    
   });
 }
