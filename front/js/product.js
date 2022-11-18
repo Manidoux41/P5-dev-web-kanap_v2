@@ -84,18 +84,21 @@ function addToCart() {
     let quantity = document.getElementById("quantity");
     const productId = getProductId();
 
-    let productSave = [color.value,Number(quantity.value)];
+    let productSave = {
+      color: color.value,
+      quantity: Number(quantity.value)
+    };
 
     const getLS = localStorage.getItem(productId)
 
     if (color.value == null || color.value == "" || quantity.value < 1) {
       console.log("Choissisez une couleur et/ou une quantité");
-      return 
-      if (getLS !== null || getLS == productSave.id) {
-        JSON.parse(getLS)
-        console.log(getLS);
-      }  
-    } else {
+      return
+      if(getLS.color == color.value) {
+        let copyGetLS = getLS.slice()
+        console.log(copyGetLS);
+      }
+    }  else{
       listProducts.push(productSave)
       localStorage.setItem(productId, JSON.stringify(listProducts));      
       //window.location.href = "cart.html"
