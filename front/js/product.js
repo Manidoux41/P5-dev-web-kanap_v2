@@ -84,11 +84,7 @@ function addToCart() {
     let quantity = document.getElementById("quantity");
     const productId = getProductId();
 
-    let productSave = {
-        id: productId,
-        color: color.value,
-        quantity: Number(quantity.value)
-    };
+    let productSave = [color.value,Number(quantity.value)];
 
     const getLS = localStorage.getItem(productId)
 
