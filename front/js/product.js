@@ -85,23 +85,22 @@ function addToCart() {
     const productId = getProductId();
 
     let productSave = {
+      id: productId,
       color: color.value,
       quantity: Number(quantity.value)
     };
 
-    const getLS = localStorage.getItem(productId)
 
-    if (color.value == null || color.value == "" || quantity.value < 1) {
+    if (color.value == null || color.value == "" || quantity.value <= 0) {
       console.log("Choissisez une couleur et/ou une quantité");
       return
-      if(getLS.color == color.value) {
-        let copyGetLS = getLS.slice()
-        console.log(copyGetLS);
-      }
-    }  else{
+    }  else {
+      let kanap = `kanap-${productId}`
       listProducts.push(productSave)
-      localStorage.setItem(productId, JSON.stringify(listProducts));      
+      localStorage.setItem(kanap, JSON.stringify(listProducts)); 
+      const getLS = localStorage.getItem(kanap);
+      console.log(getLS);    
       //window.location.href = "cart.html"
-    }    
+    }  
   });
 }
