@@ -75,40 +75,75 @@ function displayProduct(product) {
  * Ajout du produit au panier
  * 
  */
-function addToCart() {
+function onClickButton() {
   const listProducts = [];
   //sélection du button
   const button = document.getElementById("addToCart");
   button.addEventListener("click", (e) => {
     let color = document.getElementById("colors");
     let quantity = document.getElementById("quantity");
-    const productId = getProductId();
-
-    let productSave = {
-      id: productId,
-      color: color.value,
-      quantity: Number(quantity.value)
-    };
-
-
-    if (color.value == null || color.value == "" || quantity.value <= 0) {
-      console.log("Choissisez une couleur et/ou une quantité");
-      return
-    }  else {
-      let kanap = `kanap-${productId}`
-      listProducts.push(productSave)
-      localStorage.setItem(kanap, JSON.stringify(listProducts)); 
-      console.log(listProducts);
-      listProducts.forEach(item => {
-        if(item.id == productId && item.color == color.value) {
-          console.log(color.value);
-        }
-      });
-     
-      /* getLS.forEach(function(item){
-        console.log(item);
-      }); */
-      //window.location.href = "cart.html"
-    }  
-  });
+    const productId = getProductId(); 
+    
+    addToCart(id, Number(quantity.value), color.value)
+    })
+  
 }
+
+function getCart() {
+  let cart = localStorage.getItem('cart')
+  if (cart == null) {
+    return []
+  } else {
+    return JSON.parse(cart)
+  }
+}
+
+function addToCart(id, quantity, color){
+  let cart = getCart()
+  let product = {id, quantity, color}
+  console.log(cart);
+  console.log(product);
+  console.log({id, quantity, color});
+  if (searchForProductInCart(cart, product)){
+    console.log('tets2');
+      changeQuantity(product, quantity)
+    } else {
+      console.log('carte');
+      cart.push({id, quantity, color})
+      saveCart(cart)
+  }
+}
+
+//vérifie s'il existe déjà dans le panier un produit avec le meme id et la même couleur
+function searchForProductInCart(cart, product){
+  return cart.some((p) => p.id === product.id && p.color === product.color)
+}
+
+//pour changer la quantité depuis la page produit
+function changeQuantity(product, quantity) {
+  let cart = getCart();
+  let foundProduct = cart.find(p => p.id == product.id && p.color == product.color);
+  if (foundProduct != undefined) {
+      foundProduct.quantity += quantity
+     if (foundProduct.quantity <= 0){
+          removeFromCart(foundProduct);
+      } else {
+          saveCart(cart)
+      }   
+  } 
+}
+
+//enregistre le panier sur localStorage
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+//supprime du panier
+function removeFromCart(product) {
+  let cart = getCart();
+  cart = cart.filter(p=> p.id != product.id);
+  saveCart(cart);
+}
+
+
+
