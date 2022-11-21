@@ -98,8 +98,16 @@ function addToCart() {
       let kanap = `kanap-${productId}`
       listProducts.push(productSave)
       localStorage.setItem(kanap, JSON.stringify(listProducts)); 
-      const getLS = localStorage.getItem(kanap);
-      console.log(getLS);    
+      console.log(listProducts);
+      listProducts.forEach(item => {
+        if(item.id == productId && item.color == color.value) {
+          console.log(color.value);
+        }
+      });
+     
+      /* getLS.forEach(function(item){
+        console.log(item);
+      }); */
       //window.location.href = "cart.html"
     }  
   });
