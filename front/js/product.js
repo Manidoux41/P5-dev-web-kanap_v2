@@ -1,14 +1,17 @@
-// Récupérer l'id dans l'URL
-const productId = new URL(location.href).searchParams.get("id");
-(async () => {
-  const product = await getOneProduct();
-  displayProduct(product);
-})();
+init();
 const button = document.querySelector("button");
 const result = document.querySelector(".item");
+button.addEventListener("click", createLS);
+
+// Récupérer l'id dans l'URL
+async function init () {
+  const product = await getOneProduct();
+  displayProduct(product);
+};
 
 // Récupérer un produit de l'API avec l'id
 async function getOneProduct() {
+  const productId = new URL(location.href).searchParams.get("id");
   try {
     const response = await fetch(
       `http://localhost:3000/api/products/${productId}`
@@ -118,4 +121,3 @@ function getProductLS() {
   }
 }
 
-button.addEventListener("click", createLS);
