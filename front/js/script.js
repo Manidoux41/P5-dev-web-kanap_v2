@@ -1,4 +1,6 @@
-export const dataFetch = async() => {
+dataFetch();
+
+async function dataFetch() {
   let url = 'http://localhost:3000/api/products';
 
  await fetch(url)
@@ -22,5 +24,5 @@ export const dataFetch = async() => {
  .catch((err) => console.log('server unavailable:' + err));
 }
 
-dataFetch()
+
 

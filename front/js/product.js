@@ -19,7 +19,7 @@ async function getOneProduct() {
     const body = await response.json();
     return body;
   } catch (e) {
-    alert("Ca bug")
+    alert("Veuillez redemarrer le serveur, svp")
   }
 }
 
@@ -66,7 +66,7 @@ async function createLS() {
   const inputQuantity = document.querySelector("#quantity");
   const product = await getOneProduct();
   const select = document.querySelector("select");
-  const obj = {
+  const basket = {
     id: product._id,
     quantity: parseInt(inputQuantity.value),
     color: select.value,
@@ -94,13 +94,13 @@ async function createLS() {
       `Le produit ${product.name} a été ajouté au panier en ${inputQuantity.value} quantité(s)`
     );
     if (!kanapFind) {
-      kanap.push(obj);
+      kanap.push(basket);
       // Si présent dans LS avec même couleur
     } else if (kanapFind) {
       kanapFind.quantity += parseInt(inputQuantity.value);
       // Si présent dans LS mais couleur différente
     } else if (kanapFind && kanapFind.color != select.value) {
-      kanap.push(obj);
+      kanap.push(basket);
     }
     saveProductLS(kanap);
   }
