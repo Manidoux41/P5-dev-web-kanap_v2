@@ -8,8 +8,8 @@ async function dataFetch() {
  .then((products) => {
    console.log(products);
 
-   for(let data of products) {
-      
+   for(let data of products) {     
+        // displayProducts();
        let display = ''
        display += `<a href="./product.html?id=${data._id}">
                        <article>
@@ -23,6 +23,3 @@ async function dataFetch() {
 })
  .catch((err) => console.log('server unavailable:' + err));
 }
-
-
-

@@ -23,44 +23,6 @@ async function getOneProduct() {
   }
 }
 
-// Display product
-function displayProduct(product) {
-  // Création du titre
-  document.title = `${product.name}`;
-
-  // Création de l'image
-  const itemImg = document.querySelector(".item__img");
-  const img = document.createElement("img");
-  img.setAttribute("src", `${product.imageUrl}`);
-  img.setAttribute("alt", `${product.altTxt}`);
-  itemImg.appendChild(img);
-
-  // Création du h1
-  const itemContent = document.querySelector(".item__content__titlePrice");
-  const h1 = document.createElement("h1");
-  h1.textContent = `${product.name}`;
-  itemContent.appendChild(h1);
-
-  // Création du paragraphe prix
-  const itemPrice = document.querySelector("#price");
-  itemPrice.textContent = `${product.price}`;
-
-  // Création de la description
-  const itemDescription = document.querySelector("#description");
-  itemDescription.textContent = `${product.description}`;
-
-  // Création des couleurs
-  const select = document.querySelector("select");
-  for (let color of product.colors) {
-    const option = document.createElement("option");
-    option.textContent = color;
-    option.value = color;
-    select.appendChild(option);
-  }
-  const containerButton = document.querySelector(".item__content__addButton");
-  containerButton.appendChild(button);
-}
-
 // Création du localStorage
 async function createLS() {
   const inputQuantity = document.querySelector("#quantity");
@@ -104,6 +66,44 @@ async function createLS() {
     }
     saveProductLS(kanap);
   }
+}
+
+// Display product
+function displayProduct(product) {
+  // Création du titre
+  document.title = `${product.name}`;
+
+  // Création de l'image
+  const itemImg = document.querySelector(".item__img");
+  const img = document.createElement("img");
+  img.setAttribute("src", `${product.imageUrl}`);
+  img.setAttribute("alt", `${product.altTxt}`);
+  itemImg.appendChild(img);
+
+  // Création du h1
+  const itemContent = document.querySelector(".item__content__titlePrice");
+  const h1 = document.createElement("h1");
+  h1.textContent = `${product.name}`;
+  itemContent.appendChild(h1);
+
+  // Création du paragraphe prix
+  const itemPrice = document.querySelector("#price");
+  itemPrice.textContent = `${product.price}`;
+
+  // Création de la description
+  const itemDescription = document.querySelector("#description");
+  itemDescription.textContent = `${product.description}`;
+
+  // Création des couleurs
+  const select = document.querySelector("select");
+  for (let color of product.colors) {
+    const option = document.createElement("option");
+    option.textContent = color;
+    option.value = color;
+    select.appendChild(option);
+  }
+  const containerButton = document.querySelector(".item__content__addButton");
+  containerButton.appendChild(button);
 }
 
 // Sauvegarder dans le localStorage

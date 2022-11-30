@@ -3,6 +3,7 @@ let color = "";
 let id = "";
 let quantity = "";
 const cartItem = document.querySelector("#cart__items");
+
 let regexEmail = new RegExp(
   "^[a-zA-Z0-9.-_]+@{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
   "g"
@@ -12,6 +13,64 @@ let regexLastName = new RegExp("^([^0-9]*).{3}$");
 let regexCity = new RegExp("^([^0-9]*).{3}$");
 let regexAddress = new RegExp("[A-Za-z0-9 ]{6}$");
 let orderButton = document.querySelector("#order");
+
+// Au clique sur commander verifier si les champs sont bons et si oui rediriger vers la page confirmation
+const orderInput = document.querySelector("#order");
+orderInput.addEventListener("click", async (e) => {
+  const checkReturn = check();
+  const invalid = await checkProductLS();
+  e.preventDefault();
+  if (checkReturn && !invalid) {
+    confirmCart();
+  } else if (!checkReturn) {
+    let emailInput = document.querySelector("#email");
+    displayError(
+      emailInput.value,
+      "emailErrorMsg",
+      regexEmail,
+      "une adresse e-mail",
+      "au format example@gmail.com"
+    );
+
+    let firstNameInput = document.querySelector("#firstName");
+    displayError(
+      firstNameInput.value,
+      "firstNameErrorMsg",
+      regexFirstName,
+      "un prénom",
+      "supérieur à 2 lettres"
+    );
+
+    let lastNameInput = document.querySelector("#lastName");
+    displayError(
+      lastNameInput.value,
+      "lastNameErrorMsg",
+      regexLastName,
+      "un nom",
+      "supérieur à 2 lettres"
+    );
+
+    let cityInput = document.querySelector("#city");
+    displayError(
+      cityInput.value,
+      "cityErrorMsg",
+      regexCity,
+      "une ville",
+      "supérieur à 2 lettres"
+    );
+
+    let addressInput = document.querySelector("#address");
+    displayError(
+      addressInput.value,
+      "addressErrorMsg",
+      regexAddress,
+      "une adresse",
+      "supérieur à 6 lettres"
+    );
+  } else if (invalid) {
+    alert("Il n'y a aucun produit dans le panier");
+  }
+});
 
 // Fonction lancée au lancement de la page
 async function init () {
@@ -161,6 +220,27 @@ async function totalQuantity() {
   saveProductLS(kanap);
 }
 
+// Change la quantité depuis la page panier
+async function changeQuantity(product, productLS) {
+  let kanap = await getProductLS();
+  let inputQuantity = document.querySelectorAll(".itemQuantity");
+
+  inputQuantity.forEach((item) => {
+    item.addEventListener("input", (e) => {
+      const target = e.target.closest(".cart__item").dataset.id;
+      const color = e.target.closest(".cart__item").dataset.color;
+      let kanapFind = kanap.find((item) => {
+        return item.id == target && item.color == color;
+      });
+      kanapFind.quantity = parseInt(e.target.value);
+      saveProductLS(kanap);
+      totalQuantity();
+      totalPrice();
+    });
+  });
+  // }
+}
+
 // Supprimer un élément du LS
 function deleteItem(product) {
   const deleteButtons = document.querySelectorAll(".deleteItem");
@@ -188,27 +268,6 @@ function saveProductLS(product) {
   return localStorage.setItem("product", JSON.stringify(product));
 }
 
-// Change la quantité depuis la page panier
-async function changeQuantity(product, productLS) {
-  let kanap = await getProductLS();
-  let inputQuantity = document.querySelectorAll(".itemQuantity");
-
-  inputQuantity.forEach((item) => {
-    item.addEventListener("input", (e) => {
-      const target = e.target.closest(".cart__item").dataset.id;
-      const color = e.target.closest(".cart__item").dataset.color;
-      let kanapFind = kanap.find((item) => {
-        return item.id == target && item.color == color;
-      });
-      kanapFind.quantity = parseInt(e.target.value);
-      saveProductLS(kanap);
-      totalQuantity();
-      totalPrice();
-    });
-  });
-  // }
-}
-
 // Affichage des erreurs
 function displayError(input, ErrorMsg, regex, type, requis) {
   ErrorMsg = document.querySelector(`#${ErrorMsg}`);
@@ -227,64 +286,6 @@ function displayError(input, ErrorMsg, regex, type, requis) {
     ErrorMsg.style.display = "none";
   }
 }
-
-// Au clique sur commander verifier si les champs sont bons et si oui rediriger vers la page confirmation
-const orderInput = document.querySelector("#order");
-orderInput.addEventListener("click", async (e) => {
-  const checkReturn = check();
-  const invalid = await checkProductLS();
-  e.preventDefault();
-  if (checkReturn && !invalid) {
-    confirmCart();
-  } else if (!checkReturn) {
-    let emailInput = document.querySelector("#email");
-    displayError(
-      emailInput.value,
-      "emailErrorMsg",
-      regexEmail,
-      "une adresse e-mail",
-      "au format example@gmail.com"
-    );
-
-    let firstNameInput = document.querySelector("#firstName");
-    displayError(
-      firstNameInput.value,
-      "firstNameErrorMsg",
-      regexFirstName,
-      "un prénom",
-      "supérieur à 2 lettres"
-    );
-
-    let lastNameInput = document.querySelector("#lastName");
-    displayError(
-      lastNameInput.value,
-      "lastNameErrorMsg",
-      regexLastName,
-      "un nom",
-      "supérieur à 2 lettres"
-    );
-
-    let cityInput = document.querySelector("#city");
-    displayError(
-      cityInput.value,
-      "cityErrorMsg",
-      regexCity,
-      "une ville",
-      "supérieur à 2 lettres"
-    );
-
-    let addressInput = document.querySelector("#address");
-    displayError(
-      addressInput.value,
-      "addressErrorMsg",
-      regexAddress,
-      "une adresse",
-      "supérieur à 6 lettres"
-    );
-  } else if (invalid) {
-    alert("Il n'y a aucun produit dans le panier");
-  }
-});
 
 // checker les champs du formulaire grâce au regex
 function check() {
