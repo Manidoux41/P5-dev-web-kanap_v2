@@ -72,6 +72,12 @@ orderInput.addEventListener("click", async (e) => {
   }
 });
 
+
+
+/************************************************************************************
+ *                                         Async Functions
+ ***********************************************************************************/
+
 // Fonction lancée au lancement de la page
 async function init () {
   const productLS = await getProductLS();
@@ -80,11 +86,6 @@ async function init () {
   totalQuantity();
   checkProductLS();
 };
-
-// Récupérer les produits du localStorage
-function getProductLS() {
-  return JSON.parse(localStorage.getItem("product"));
-}
 
 // Vérifie si le localStorage est vide
 async function checkProductLS() {
@@ -239,6 +240,16 @@ async function changeQuantity(product, productLS) {
     });
   });
   // }
+}
+
+
+/************************************************************************************
+ *                                         Classic Functions
+ ***********************************************************************************/
+
+// Récupérer les produits du localStorage
+function getProductLS() {
+  return JSON.parse(localStorage.getItem("product"));
 }
 
 // Supprimer un élément du LS

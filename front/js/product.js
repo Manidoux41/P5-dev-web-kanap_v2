@@ -3,6 +3,10 @@ const button = document.querySelector("button");
 const result = document.querySelector(".item");
 button.addEventListener("click", createLS);
 
+
+/************************************************************************************
+ *                                         Async Functions
+ ***********************************************************************************/
 // Récupérer l'id dans l'URL
 async function init () {
   const product = await getOneProduct();
@@ -22,6 +26,10 @@ async function getOneProduct() {
     alert("Veuillez redemarrer le serveur, svp")
   }
 }
+
+/************************************************************************************
+ *                                         Classic Functions
+ ***********************************************************************************/
 
 // Création du localStorage
 async function createLS() {

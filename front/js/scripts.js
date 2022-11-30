@@ -1,14 +1,15 @@
-dataFetch();
+displayProducts();
 
 // Récupération des articles de l'API
-async function getArticles() {
-    var products = await fetch("http://localhost:3000/api/products")
+async function dataFetch() {
+    let url = 'http://localhost:3000/api/products';
+    var products = await fetch(url)    
     return await products.json();
 }
 
     // Répartition des données de l'API dans le DOM
-async function dataFetch() {
-    var result = await getArticles ()
+async function displayProducts() {
+    var result = await dataFetch ()
     .then(function (data){
         const articles = data;
         //console.table(articles);
